@@ -379,8 +379,13 @@ footer { padding: 32px 6%; border-top: 1px solid var(--border); display: flex; j
   <div style="background:#13131E;border:1px solid #C9A84C;border-radius:16px;padding:36px 32px;box-shadow:0 20px 60px rgba(201,168,76,0.12);">
     <h3 style="font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:8px;text-align:center;">سجّل الآن واحجز مكانك</h3>
     <p style="font-size:0.88rem;color:#7777AA;margin-bottom:28px;text-align:center;">أماكن محدودة — أرسل معلوماتك وسيتواصل معك فريقنا خلال 24 ساعة</p>
-    <form action="https://formspree.io/f/mnjobpro" method="POST">
-<input type="hidden" name="_next" value="thankyou.html">
+ <form action="https://formspree.io/f/mnjobpro" method="POST">
+
+  <input type="hidden" name="_redirect" value="https://masterclassacademy-code.github.io/github.io/thankyou.html">
+
+  <!-- الحقول -->
+  <input type="text" name="name">
+
       <!-- الاسم -->
       <div style="margin-bottom:16px;">
         <label style="display:block;font-size:0.82rem;font-weight:700;color:#7777AA;margin-bottom:7px;text-align:right;">الاسم الكامل *</label>

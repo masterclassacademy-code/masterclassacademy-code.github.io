@@ -752,6 +752,25 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
-  
+  <script>
+document.getElementById("myForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  fetch(this.action, {
+    method: "POST",
+    body: new FormData(this),
+    headers: {
+      "Accept": "application/json"
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.href = "https://masterclassacademy-code.github.io/thankyou.html";
+    } else {
+      alert("خطأ، حاول مرة أخرى");
+    }
+  });
+});
+</script>
 </body>
 </html>

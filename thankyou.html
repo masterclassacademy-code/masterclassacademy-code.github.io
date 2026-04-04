@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيلك وصل — MASTERCLASS ACADEMY</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C76B;
+  --deep: #07070F;
+  --card: #11111C;
+  --border: #1E1E30;
+  --text: #E0E0F0;
+  --muted: #6666AA;
+  --green: #25D366;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  min-height: 100vh;
+  background: var(--deep);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* PARTICLES BG */
+.bg-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.bg-particles::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(201,168,76,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 90%, rgba(201,168,76,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 30% 30% at 5% 60%, rgba(201,168,76,0.05) 0%, transparent 50%);
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0;
+  animation: float linear infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(100vh) scale(0); opacity:0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.1; }
+  100% { transform: translateY(-20px) scale(1); opacity:0; }
+}
+
+/* WRAPPER */
+.page {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 60px;
+  min-height: 100vh;
+}
+
+/* TOP BADGE */
+.top-badge {
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 100px;
+  padding: 8px 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  animation: fadeDown 0.5s ease both;
+}
+
+/* SUCCESS ICON */
+.success-wrap {
+  position: relative;
+  margin-bottom: 32px;
+  animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+}
+.success-ring {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 2px solid rgba(201,168,76,0.25);
+  animation: ringPulse 2s ease-in-out 1s infinite;
+}
+.success-ring2 {
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.1);
+  animation: ringPulse 2s ease-in-out 1.3s infinite;
+}
+@keyframes ringPulse {
+  0%,100% { transform:scale(1); opacity:1; }
+  50%      { transform:scale(1.08); opacity:0.5; }
+}
+.success-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+  box-shadow: 0 0 60px rgba(201,168,76,0.4);
+}
+@keyframes popIn {
+  from { transform:scale(0) rotate(-180deg); opacity:0; }
+  to   { transform:scale(1) rotate(0deg); opacity:1; }
+}
+
+/* HEADLINE */
+.headline {
+  text-align: center;
+  max-width: 520px;
+  margin-bottom: 10px;
+  animation: fadeUp 0.6s ease 0.4s both;
+}
+.headline h1 {
+  font-size: clamp(1.9rem, 5.5vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.headline h1 em {
+  font-style: normal;
+  color: var(--gold);
+  position: relative;
+}
+.headline .sub {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.85;
+}
+.headline .sub strong { color: var(--gold); font-weight: 900; }
+
+/* DIVIDER */
+.gold-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 3px;
+  margin: 28px auto;
+  animation: fadeUp 0.6s ease 0.5s both;
+}
+
+/* URGENCY BOX */
+.urgency-box {
+  background: rgba(255,77,46,0.08);
+  border: 1px solid rgba(255,77,46,0.3);
+  border-radius: 12px;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 520px;
+  width: 100%;
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s ease 0.55s both;
+}
+.urgency-icon { font-size: 1.4rem; flex-shrink: 0; }
+.urgency-text {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #FF7070;
+  line-height: 1.5;
+  text-align: right;
+}
+
+/* STEPS */
+.steps-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 30px 28px;
+  max-width: 520px;
+  width: 100%;
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s ease 0.6s both;
+}
+.steps-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 22px;
+  text-align: center;
+}
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-direction: row-reverse;
+  text-align: right;
+}
+.step:last-child { margin-bottom: 0; }
+.step-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #07070F;
+  font-weight: 900;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-content h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.step-content p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* MAIN CTA */
+.cta-card {
+  background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, var(--card) 60%);
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 18px;
+  padding: 32px 28px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeUp 0.6s ease 0.7s both;
+  box-shadow: 0 20px 60px rgba(201,168,76,0.1);
+}
+.cta-card h3 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.cta-card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+.cta-card p strong { color: var(--gold); }
+
+.wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #25D366, #1aab52);
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900;
+  font-size: 1.15rem;
+  padding: 20px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 10px 40px rgba(37,211,102,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.wa-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: rgba(255,255,255,0.15);
+  transform: skewX(-20deg);
+  transition: left 0.4s ease;
+}
+.wa-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 50px rgba(37,211,102,0.55); }
+.wa-btn:hover::before { left: 150%; }
+.wa-icon { font-size: 1.6rem; line-height: 1; animation: wiggle 1.5s ease 1.5s infinite; }
+@keyframes wiggle {
+  0%,100% { transform:rotate(0); }
+  25%      { transform:rotate(-10deg); }
+  75%      { transform:rotate(10deg); }
+}
+.wa-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 14px;
+  border: 2px solid rgba(37,211,102,0.4);
+  animation: waPulse 2s ease-in-out 2s infinite;
+}
+@keyframes waPulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:0; transform:scale(1.05); }
+}
+.wa-sub {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.7);
+  margin-top: 10px;
+  display: block;
+}
+
+/* SOCIAL PROOF */
+.social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 520px;
+  width: 100%;
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s ease 0.8s both;
+}
+.avatars {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.av {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--deep);
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: var(--deep);
+  margin-right: -8px;
+}
+.av:first-child { margin-right: 0; }
+.proof-text {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: right;
+}
+.proof-text strong { color: var(--gold); }
+
+/* BACK */
+.back-link {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  animation: fadeUp 0.6s ease 0.9s both;
+  display: inline-block;
+}
+.back-link:hover { color: var(--gold); }
+
+/* ANIMATIONS */
+@keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp   { from{opacity:0;transform:translateY(20px)}  to{opacity:1;transform:translateY(0)} }
+
+/* MOBILE */
+@media(max-width:480px){
+  .page { padding: 28px 16px 50px; }
+  .steps-card, .cta-card { padding: 24px 18px; }
+  .wa-btn { font-size: 1.05rem; padding: 18px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- particles -->
+<div class="bg-particles" id="particles"></div>
+
+<div class="page">
+
+  <!-- badge -->
+  <div class="top-badge">✦ MASTERCLASS ACADEMY ✦</div>
+
+  <!-- success icon -->
+  <div class="success-wrap">
+    <div class="success-ring2"></div>
+    <div class="success-ring"></div>
+    <div class="success-circle">✓</div>
+  </div>
+
+  <!-- headline -->
+  <div class="headline">
+    <h1>مبروك! <em>تسجيلك وصل</em> 🎉</h1>
+    <p class="sub">
+      استلمنا معلوماتك بنجاح.<br>
+      سيتواصل معك فريقنا خلال <strong>24 ساعة</strong> لتأكيد مكانك في البرنامج.
+    </p>
+  </div>
+
+  <div class="gold-line"></div>
+
+  <!-- urgency -->
+  <div class="urgency-box">
+    <div class="urgency-icon">⚠️</div>
+    <div class="urgency-text">تبقّى عدد محدود جداً من الأماكن — لا تضيّع وقتك وتواصل معنا الآن لتأمين مكانك.</div>
+  </div>
+
+  <!-- steps -->
+  <div class="steps-card">
+    <div class="steps-title">⚡ ماذا يحدث الآن ؟</div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>تأكيد التسجيل</h4>
+        <p>فريقنا سيراجع طلبك ويتواصل معك خلال 24 ساعة.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>الوصول الفوري عبر واتساب</h4>
+        <p>اضغط على الزر أدناه للحصول على إجابة فورية وتأكيد مكانك بشكل أسرع.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>ابدأ رحلتك</h4>
+        <p>بعد التأكيد، ستحصل على وصول كامل للبرنامج وتبدأ مباشرة.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- main CTA -->
+  <div class="cta-card">
+    <h3>⚡ لا تنتظر — أمّن مكانك الآن</h3>
+    <p>تواصل مع فريقنا <strong>مباشرةً عبر واتساب</strong> واحصل على رد فوري قبل امتلاء الأماكن.</p>
+    <div style="position:relative;display:inline-block;width:100%;">
+      <div class="wa-pulse"></div>
+      <a href="https://wa.me/213558024121" class="wa-btn" target="_blank">
+        <span class="wa-icon">💬</span>
+        تواصل معنا على واتساب الآن
+      </a>
+    </div>
+    <span class="wa-sub">🟢 الفريق متاح الآن · رد خلال دقائق</span>
+  </div>
+
+  <!-- social proof -->
+  <div class="social-proof">
+    <div class="avatars">
+      <div class="av">ك</div>
+      <div class="av">س</div>
+      <div class="av">ر</div>
+      <div class="av">م</div>
+    </div>
+    <div class="proof-text">انضم <strong>+200 مدير أكاديمية</strong> بالفعل إلى البرنامج</div>
+  </div>
+
+  <a href="academie-landing-ar.html" class="back-link">← العودة إلى الصفحة الرئيسية</a>
+
+</div>
+
+<script>
+// Generate floating particles
+(function(){
+  var container = document.getElementById('particles');
+  for(var i = 0; i < 18; i++){
+    var p = document.createElement('div');
+    p.className = 'particle';
+    var size = Math.random() * 4 + 2;
+    p.style.cssText = [
+      'width:' + size + 'px',
+      'height:' + size + 'px',
+      'left:' + Math.random()*100 + '%',
+      'animation-duration:' + (Math.random()*12+8) + 's',
+      'animation-delay:' + (Math.random()*10) + 's',
+      'opacity:0'
+    ].join(';');
+    container.appendChild(p);
+  }
+})();
+</script>
+</body>
+</html>

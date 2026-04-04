@@ -379,21 +379,35 @@ footer { padding: 32px 6%; border-top: 1px solid var(--border); display: flex; j
   <div style="background:#13131E;border:1px solid #C9A84C;border-radius:16px;padding:36px 32px;box-shadow:0 20px 60px rgba(201,168,76,0.12);">
     <h3 style="font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:8px;text-align:center;">سجّل الآن واحجز مكانك</h3>
     <p style="font-size:0.88rem;color:#7777AA;margin-bottom:28px;text-align:center;">أماكن محدودة — أرسل معلوماتك وسيتواصل معك فريقنا خلال 24 ساعة</p>
-<script>
-document.getElementById("myForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+<form id="myForm" action="https://formspree.io/f/mnjobjpro" method="POST">
 
-    fetch(this.action, {
-        method: "POST",
-        body: new FormData(this),
-        headers: {
-            'Accept': 'application/json'
-        }
-    }).then(() => {
-        window.location.href = "https://masterclassacademy-code.github.io/github.io/thankyou.html";
-    });
-});
-</script>
+  <!-- الاسم -->
+  <div style="margin-bottom:16px;">
+    <input type="text" name="name" required placeholder="أدخل اسمك الكامل"
+    style="width:100%;padding:14px;border-radius:8px;border:1px solid #252535;">
+  </div>
+
+  <!-- الايميل -->
+  <div style="margin-bottom:16px;">
+    <input type="email" name="email" required placeholder="example@email.com"
+    style="width:100%;padding:14px;border-radius:8px;border:1px solid #252535;">
+  </div>
+
+  <!-- الهاتف -->
+  <div style="margin-bottom:16px;">
+    <input type="text" name="phone" required placeholder="رقم الهاتف"
+    style="width:100%;padding:14px;border-radius:8px;border:1px solid #252535;">
+  </div>
+
+  <!-- ربط الايميل -->
+  <input type="hidden" name="_replyto" value="masterclassacademy467@gmail.com">
+
+  <!-- زر -->
+  <button type="submit" style="width:100%;padding:16px;background:#C9A84C;color:#000;border:none;border-radius:10px;font-weight:bold;">
+    احجز مكانك الآن
+  </button>
+
+</form>
       <!-- الاسم -->
       <div style="margin-bottom:16px;">
         <label style="display:block;font-size:0.82rem;font-weight:700;color:#7777AA;margin-bottom:7px;text-align:right;">الاسم الكامل *</label>
@@ -744,6 +758,31 @@ document.querySelectorAll('.day-card, .testi-card, .module-card').forEach(functi
   el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   obs.observe(el);
+});
+</script>
+  <script>
+document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const form = this;
+
+    fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "https://masterclassacademy-code.github.io/github.io/thankyou.html";
+        } else {
+            alert("خطأ في الإرسال");
+        }
+    })
+    .catch(() => {
+        alert("مشكل في الاتصال");
+    });
 });
 </script>
 </body>
